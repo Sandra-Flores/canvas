@@ -6,7 +6,7 @@
 //  Copyright © 2018 Diego Medina. All rights reserved.
 //
 
-// TODO: STEP 3
+// TODO: STEP 5 and make sure it works lol
 
 import UIKit
 
