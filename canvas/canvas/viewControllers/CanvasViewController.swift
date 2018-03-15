@@ -29,8 +29,7 @@ class CanvasViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        trayDownOffset = 230
-//        trayUp = CGPoint(x: trayView.center.x ,y: trayView.center.y + 40) // The initial position of the tray
+        trayDownOffset = 260
         trayUp = trayView.center
         // The position of the tray transposed down
         trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
@@ -56,6 +55,27 @@ class CanvasViewController: UIViewController {
                 }
                 
             }else{ // moving up
+                
+//                UIView.animateKeyframes(withDuration: 4, delay: 0.0, options: UIViewKeyframeAnimationOptions.repeat, animations: { () -> Void in
+//
+//                    UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/4, animations: { () -> Void in
+//                        self.trayView.center = CGPoint(x: 0, y: 100)
+//                    })
+//                    UIView.addKeyframe(withRelativeStartTime: 1/4, relativeDuration: 1/4, animations: { () -> Void in
+//                        self.trayView.center = CGPoint(x: 100, y: 100)
+//                    })
+//                    UIView.addKeyframe(withRelativeStartTime: 2/4, relativeDuration: 1/4, animations: { () -> Void in
+//                        self.trayView.center = CGPoint(x: 100, y: 0)
+//                    })
+//
+//                    UIView.addKeyframe(withRelativeStartTime: 3/4, relativeDuration: 1/4, animations: { () -> Void in
+//                        self.trayView.center = CGPoint(x: 0, y: 0)
+//                    })
+//
+//                }, completion: nil)
+                
+                
+                
                 UIView.animate(withDuration: 0.3) {
                     self.trayView.center = self.trayUp
                 }
@@ -68,21 +88,32 @@ class CanvasViewController: UIViewController {
     @IBAction func didPanFace(_ sender: UIPanGestureRecognizer) {
         
         let translation = sender.translation(in: view)
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanNewFace(sender:)))
+        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(didPinchFace(sender:)))
+        let rotateGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(didRotateFace(sender:)))
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didDoubleTapFace(sender:)))
+        doubleTapGestureRecognizer.numberOfTapsRequired = 2
+        
+        
         
         if sender.state == .began {
     
-            var imageView = sender.view as! UIImageView
-            let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanNewFace(sender:)))
-            
-            
+            let imageView = sender.view as! UIImageView
+
             newlyCreatedFace = UIImageView(image: imageView.image)
-            newlyCreatedFace.addGestureRecognizer(gestureRecognizer)
             view.addSubview(newlyCreatedFace)
+            
             newlyCreatedFace.center = imageView.center
             newlyCreatedFace.center.y += trayView.frame.origin.y
             newlyCreatedFaceOriginalCenter = newlyCreatedFace.center
-            newlyCreatedFace.isUserInteractionEnabled = true
             
+            newlyCreatedFace.isUserInteractionEnabled = true
+//            newlyCreatedFace.isMultipleTouchEnabled = true
+            
+            newlyCreatedFace.addGestureRecognizer(pinchGestureRecognizer)
+            newlyCreatedFace.addGestureRecognizer(gestureRecognizer)
+            newlyCreatedFace.addGestureRecognizer(rotateGestureRecognizer)
+            newlyCreatedFace.addGestureRecognizer(doubleTapGestureRecognizer)
             
         } else if sender.state == .changed {
             
@@ -106,8 +137,31 @@ class CanvasViewController: UIViewController {
         } else if sender.state == .ended {
         }
 
-    } // didPan
+    } // didPanNewFace
 
+    @objc func didPinchFace(sender: UIPinchGestureRecognizer) {
+        
+        let scale = sender.scale
+        let imageView = sender.view as! UIImageView
+        imageView.transform = imageView.transform.scaledBy(x: scale, y: scale)
+        sender.scale = 1
+        
+    } // didPinchFace
+    
+    @objc func didRotateFace(sender: UIRotationGestureRecognizer) {
+        
+        let rotation = sender.rotation
+        let imageView = sender.view as! UIImageView
+        imageView.transform = imageView.transform.rotated(by: rotation)
+        sender.rotation = 0
+        
+    } // didPinchFace
+
+    @objc func didDoubleTapFace(sender: UITapGestureRecognizer) {
+        
+        sender.view?.removeFromSuperview()
+        
+    } // didPinchFace
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

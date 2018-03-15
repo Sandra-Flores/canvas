@@ -19,48 +19,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73p-kY-nx6">
-                                <rect key="frame" x="0.0" y="515" width="375" height="263"/>
+                                <rect key="frame" x="0.0" y="419" width="375" height="359"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="excited" translatesAutoresizingMaskIntoConstraints="NO" id="ETj-wa-M5m">
-                                        <rect key="frame" x="157" y="79" width="60" height="60"/>
+                                        <rect key="frame" x="157" y="111" width="60" height="60"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="kdI-hY-A7D" appends="YES" id="Mbw-ew-5na"/>
                                         </connections>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="down_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="gNK-z5-diK">
-                                        <rect key="frame" x="177" y="8" width="20" height="32"/>
+                                        <rect key="frame" x="177" y="8" width="20" height="64"/>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="happy" translatesAutoresizingMaskIntoConstraints="NO" id="uED-LI-vTF">
-                                        <rect key="frame" x="307" y="55" width="60" height="108"/>
+                                        <rect key="frame" x="307" y="55" width="60" height="172"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="7LH-5T-kLq" appends="YES" id="6sp-0q-XgX"/>
                                         </connections>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="sad" translatesAutoresizingMaskIntoConstraints="NO" id="WPb-nH-sIy">
-                                        <rect key="frame" x="8" y="171" width="60" height="60"/>
+                                        <rect key="frame" x="8" y="235" width="60" height="60"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="BLf-cf-AoG" appends="YES" id="ca1-C8-puR"/>
                                         </connections>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="tongue" translatesAutoresizingMaskIntoConstraints="NO" id="PGy-PF-43R">
-                                        <rect key="frame" x="307" y="171" width="60" height="60"/>
+                                        <rect key="frame" x="307" y="235" width="60" height="60"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="h3e-yz-gA4" appends="YES" id="v8I-mb-8Ov"/>
                                         </connections>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" verticalHuggingPriority="249" insetsLayoutMarginsFromSafeArea="NO" image="wink" translatesAutoresizingMaskIntoConstraints="NO" id="nym-fy-PGB">
-                                        <rect key="frame" x="157" y="147" width="60" height="108"/>
+                                        <rect key="frame" x="157" y="179" width="60" height="172"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="Rb7-gC-T17" appends="YES" id="Egt-C4-jx3"/>
                                         </connections>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="dead" translatesAutoresizingMaskIntoConstraints="NO" id="pla-RJ-XnD">
-                                        <rect key="frame" x="8" y="55" width="60" height="108"/>
+                                        <rect key="frame" x="8" y="55" width="60" height="172"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="hJh-Eh-IgI" appends="YES" id="2Mh-MC-jfK"/>
@@ -80,7 +80,7 @@
                                     <constraint firstAttribute="trailing" secondItem="uED-LI-vTF" secondAttribute="trailing" constant="8" id="K3e-rc-PuY"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="375" id="OK6-dC-b4b"/>
                                     <constraint firstAttribute="bottom" secondItem="nym-fy-PGB" secondAttribute="bottom" constant="8" id="QiY-GO-r7k"/>
-                                    <constraint firstAttribute="bottom" secondItem="WPb-nH-sIy" secondAttribute="bottom" constant="32" id="SMM-yw-k1F"/>
+                                    <constraint firstAttribute="bottom" secondItem="WPb-nH-sIy" secondAttribute="bottom" constant="64" id="SMM-yw-k1F"/>
                                     <constraint firstItem="uED-LI-vTF" firstAttribute="centerY" secondItem="pla-RJ-XnD" secondAttribute="centerY" id="TIA-qd-Rby"/>
                                     <constraint firstItem="WPb-nH-sIy" firstAttribute="centerX" secondItem="pla-RJ-XnD" secondAttribute="centerX" id="WVt-RK-s0d"/>
                                     <constraint firstItem="ETj-wa-M5m" firstAttribute="leading" secondItem="pla-RJ-XnD" secondAttribute="trailing" constant="89" id="Xqr-Cv-K0R"/>
