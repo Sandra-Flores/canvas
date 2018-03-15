@@ -11,7 +11,7 @@
 import UIKit
 
 class CanvasViewController: UIViewController {
-
+    
     // main view
     @IBOutlet weak var trayView: UIView!
     
@@ -20,7 +20,7 @@ class CanvasViewController: UIViewController {
     var trayDownOffset: CGFloat!
     var trayUp: CGPoint!
     var trayDown: CGPoint!
-
+    
     // faces
     var newlyCreatedFace: UIImageView!
     var newlyCreatedFaceOriginalCenter: CGPoint!
@@ -34,11 +34,11 @@ class CanvasViewController: UIViewController {
         // The position of the tray transposed down
         trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
     }
-
-    @IBAction func didPan(_ sender: UIPanGestureRecognizer) {
     
+    @IBAction func didPan(_ sender: UIPanGestureRecognizer) {
+        
         let translation = sender.translation(in: view)
-
+        
         if sender.state == .began {
             trayOriginalCenter = trayView.center
             
@@ -56,31 +56,11 @@ class CanvasViewController: UIViewController {
                 
             }else{ // moving up
                 
-//                UIView.animateKeyframes(withDuration: 4, delay: 0.0, options: UIViewKeyframeAnimationOptions.repeat, animations: { () -> Void in
-//
-//                    UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/4, animations: { () -> Void in
-//                        self.trayView.center = CGPoint(x: 0, y: 100)
-//                    })
-//                    UIView.addKeyframe(withRelativeStartTime: 1/4, relativeDuration: 1/4, animations: { () -> Void in
-//                        self.trayView.center = CGPoint(x: 100, y: 100)
-//                    })
-//                    UIView.addKeyframe(withRelativeStartTime: 2/4, relativeDuration: 1/4, animations: { () -> Void in
-//                        self.trayView.center = CGPoint(x: 100, y: 0)
-//                    })
-//
-//                    UIView.addKeyframe(withRelativeStartTime: 3/4, relativeDuration: 1/4, animations: { () -> Void in
-//                        self.trayView.center = CGPoint(x: 0, y: 0)
-//                    })
-//
-//                }, completion: nil)
-                
-                
-                
                 UIView.animate(withDuration: 0.3) {
                     self.trayView.center = self.trayUp
                 }
             }
-
+            
         } // else if
         
     } // didPan
@@ -93,9 +73,7 @@ class CanvasViewController: UIViewController {
         let rotateGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(didRotateFace(sender:)))
         let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didDoubleTapFace(sender:)))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
-        
-        
-        
+ 
         if sender.state == .began {
     
             let imageView = sender.view as! UIImageView
@@ -120,15 +98,14 @@ class CanvasViewController: UIViewController {
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
             
         } else if sender.state == .ended {
-
+            
         }
         
     } // didPanface
     
     @objc func didPanNewFace(sender: UIPanGestureRecognizer) {
-
+        
         let translation = sender.translation(in: view)
-
         if sender.state == .began {
             newlyCreatedFace = sender.view as! UIImageView // to get the face that we panned on.
             newlyCreatedFaceOriginalCenter = newlyCreatedFace.center // so we can offset by translation later.
@@ -168,15 +145,15 @@ class CanvasViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
