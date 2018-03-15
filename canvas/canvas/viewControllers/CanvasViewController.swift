@@ -29,8 +29,8 @@ class CanvasViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        trayDownOffset = 330
-        trayUp = trayView.center // The initial position of the tray
+        trayDownOffset = 260
+        trayUp = CGPoint(x: trayView.center.x ,y: trayView.center.y + 40) // The initial position of the tray
         // The position of the tray transposed down
         trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
     }
@@ -71,8 +71,11 @@ class CanvasViewController: UIViewController {
         if sender.state == .began {
     
             var imageView = sender.view as! UIImageView
+            let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanNewFace(sender:)))
+            
             
             newlyCreatedFace = UIImageView(image: imageView.image)
+            newlyCreatedFace.addGestureRecognizer(gestureRecognizer)
             view.addSubview(newlyCreatedFace)
             newlyCreatedFace.center = imageView.center
             newlyCreatedFace.center.y += trayView.frame.origin.y
@@ -90,20 +93,20 @@ class CanvasViewController: UIViewController {
         
     } // didPanface
     
-//    func didPan(sender: UIPanGestureRecognizer) {
-//
-//        let translation = sender.translation(in: view)
-//
-//        if sender.state == .began {
-//            newlyCreatedFace = sender.view as! UIImageView // to get the face that we panned on.
-//            newlyCreatedFaceOriginalCenter = newlyCreatedFace.center // so we can offset by translation later.
-//        } else if sender.state == .changed {
-//            newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
-//        } else if sender.state == .ended {
-//        }
-//
-//    } // didPan
-//
+    @objc func didPanNewFace(sender: UIPanGestureRecognizer) {
+
+        let translation = sender.translation(in: view)
+
+        if sender.state == .began {
+            newlyCreatedFace = sender.view as! UIImageView // to get the face that we panned on.
+            newlyCreatedFaceOriginalCenter = newlyCreatedFace.center // so we can offset by translation later.
+        } else if sender.state == .changed {
+            newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
+        } else if sender.state == .ended {
+        }
+
+    } // didPan
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
