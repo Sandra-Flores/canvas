@@ -68,10 +68,15 @@ class CanvasViewController: UIViewController {
     @IBAction func didPanFace(_ sender: UIPanGestureRecognizer) {
         
         let translation = sender.translation(in: view)
+        
         let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanNewFace(sender:)))
+        
         let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(didPinchFace(sender:)))
-        let rotateGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(didRotateFace(sender:)))
+        
+        let rotateGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(didRotateFace(sender:)))
+        
         let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didDoubleTapFace(sender:)))
+        
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
  
         if sender.state == .began {
